@@ -1,10 +1,7 @@
 <template>
-  <div class="flex items-stretch bg-black text-white min-h-screen font-thin">
-    <div class="w-1/2 flex-1">
-      <div
-        id="weather"
-        class="mb-6"
-      >
+  <div class="flex items-stretch bg-black text-white min-h-screen font-normal">
+    <div id="side-bar" class="w-1/2 flex-1">
+      <div id="weather" class="mb-6">
         <table>
           <thead>
             <tr>
@@ -20,13 +17,13 @@
             v-for="(dayReport, index) in weather"
             :key="'dayReport-' + index"
           >
-            <th class="font-thin">
+            <th class="font-normal">
               {{ WEEKDAYS[((today.getDay() + index) + WEEKDAYS.length - 1) % WEEKDAYS.length]}}
             </th>
             <th>
               <i
                 v-if="dayReport.icon == 'rain'"
-                class="fas fa-cloud-rain font-thin"
+                class="fas fa-cloud-rain font-normal"
               /> 
               <i
                 v-else-if="dayReport.icon == 'partly-cloudy-day'"
@@ -34,41 +31,41 @@
               />
               <i
                 v-else-if="dayReport.icon == 'wind'"
-                class="fas fa-wind font-thin"
+                class="fas fa-wind font-normal"
               />
               <i
                 v-else-if="dayReport.icon == 'cloudy'"
-                class="fas fa-cloud font-thin"
+                class="fas fa-cloud font-normal"
               />
               <i
                 v-else-if="dayReport.icon == 'clear-night'"
-                class="fas fa-moon font-thin"
+                class="fas fa-moon font-normal"
               />
               <i
                 v-else-if="dayReport.icon == 'clear-day'"
-                class="fas fa-sun font-thin"
+                class="fas fa-sun font-normal"
               />
               <i
                 v-else-if="dayReport.icon == 'partly-cloudy-night'"
-                class="fas fa-cloud-moon font-thin"
+                class="fas fa-cloud-moon font-normal"
               />
               <i
                 v-else-if="dayReport.icon == 'sleet'"
-                class="fas fa-cloud font-thin"
+                class="fas fa-cloud font-normal"
               />
               <i
                 v-else-if="dayReport.icon == 'snow'"
-                class="fas fa-cloud-meatball font-thin"
+                class="fas fa-cloud-meatball font-normal"
               />
               <i
                 v-else-if="dayReport.icon == 'fog'"
-                class="fas fa-smog font-thin"
+                class="fas fa-smog font-normal"
               />
             </th>
               
-            <th class="font-thin">{{ dayReport.tempMin }}°</th>
-            <th class="font-thin">/</th>
-            <th class="font-thin">{{ dayReport.tempMax }}°</th>
+            <th class="font-normal">{{ dayReport.tempMin }}°</th>
+            <th class="font-normal">/</th>
+            <th class="font-normal">{{ dayReport.tempMax }}°</th>
           </tr>
         </table>
       </div>
@@ -89,10 +86,10 @@
           v-for="(event, index) in calendar"
           :key="'event-' + index"
           >
-            <th class="font-thin">
+            <th class="font-normal">
               {{ event.summary }}
             </th>
-            <th class="font-thin">
+            <th class="font-normal">
               {{ get_event_dif(event.startTime) }}
             </th>
           </tr>
@@ -100,18 +97,12 @@
       </div>
     </div>
 
-    <div
-      id="clock"
-      class="text-3xl flex flex-col top-0 right-0 mb-6 pr-2"
-    >
+    <div id="clock" class="text-3xl flex flex-col top-0 right-0 mb-6 pr-2">
       <p>{{ today.toDateString() }}</p>
       <p>{{ today.toLocaleTimeString() }}</p>
     </div>
 
-    <div
-      id="news"
-      class="w-full text-center absolute mb-16 px-12 bottom-0"
-    >
+    <div id="news" class="w-full text-center absolute mb-16 px-12 bottom-0">
       <agile
         v-if="news"
         :nav-buttons="false"
@@ -119,7 +110,7 @@
         :autoplay-speed="10000"
         :slides-to-show="1"
       >
-        <div
+        <div id="newsItem"
           v-for="(newsItem, index) in news"
           :key="'newsItem-' + index"
           class="slide text-2xl px-3"
@@ -130,14 +121,13 @@
           >
             {{ newsItem.title }}
           </a>
-          <p class="text-sm text-gray-500">
+          <p class="font-light text-sm text-gray-500">
             {{ newsItem.source }} published {{ get_time_diff(parse_time(newsItem.time)) }} ago
           </p>
         </div>
       </agile>
     </div>
-    <div :hidden='true' class="w-full text-center absolute mb-16 px-12 top-0 text-sm text-gray-800"
-    >
+    <div :hidden='true' class="w-full text-center absolute mb-16 px-12 top-0 text-sm text-gray-800">
       SpectaculaireSpiegel v1.1
     </div>
   </div>
@@ -239,7 +229,7 @@ export default {
         //return days + " Days "+ date_diff.getHours() + " Hours " + date_diff.getMinutes() + " Minutes " + date_diff.getSeconds() + " Seconds " +  date_diff.getMilliseconds() + " Miliseconds";
     },
     getnews(){
-      const baseUrl = `http://${window.location.hostname}:8000`
+      const baseUrl = `http://192.168.178.116:8000` //${window.location.hostname}
       console.log(baseUrl+'/news')
 
       this.news = null
