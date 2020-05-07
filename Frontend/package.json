@@ -1,0 +1,54 @@
+{
+  "name": "spectaculairespiegel",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "watch": "npm run serve -- --watch",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint"
+  },
+  "dependencies": {
+    "axios": "^0.19.0",
+    "bootstrap": "^4.4.1",
+    "core-js": "^3.4.4",
+    "cors": "^2.8.5",
+    "jquery": "^3.4.1",
+    "tailwind": "^4.0.0",
+    "tailwindcss": "^1.1.4",
+    "upgrade": "^1.1.0",
+    "vue": "^2.6.10",
+    "vue-agile": "^1.0.11",
+    "vue-axios": "^2.1.5",
+    "vue-browser-geolocation": "^1.8.0",
+    "vue-slick": "^1.1.15",
+    "watch": "^1.0.2"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "^4.1.0",
+    "@vue/cli-plugin-eslint": "^4.1.0",
+    "@vue/cli-service": "^4.1.0",
+    "babel-eslint": "^10.0.3",
+    "eslint": "^5.16.0",
+    "eslint-plugin-vue": "^5.2.3",
+    "vue-template-compiler": "^2.6.10"
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/essential",
+      "eslint:recommended"
+    ],
+    "rules": {},
+    "parserOptions": {
+      "parser": "babel-eslint"
+    }
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions"
+  ]
+}
