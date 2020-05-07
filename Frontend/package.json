@@ -13,7 +13,7 @@
     "bootstrap": "^4.4.1",
     "core-js": "^3.4.4",
     "cors": "^2.8.5",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "tailwind": "^4.0.0",
     "tailwindcss": "^1.1.4",
     "upgrade": "^1.1.0",
