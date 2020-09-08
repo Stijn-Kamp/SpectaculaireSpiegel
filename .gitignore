@@ -1,5 +1,8 @@
 *.pyc
+
 Backend/credentials
 Backend/__pycache__
+Backend/configuration/config.ini
 
 Frontend/node_modules
+Frontend/dist
