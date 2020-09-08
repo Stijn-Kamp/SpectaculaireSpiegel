@@ -1,1 +1,1 @@
-/usr/lib/python3.7/functools.py
+C:/usr/lib/python3.7/functools.py

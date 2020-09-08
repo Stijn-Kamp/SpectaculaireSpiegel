@@ -1,1 +1,1 @@
-/usr/lib/python3.7/_bootlocale.py
+C:/usr/lib/python3.7/_bootlocale.py

@@ -1,1 +1,1 @@
-/usr/lib/python3.7/keyword.py
+C:/usr/lib/python3.7/keyword.py

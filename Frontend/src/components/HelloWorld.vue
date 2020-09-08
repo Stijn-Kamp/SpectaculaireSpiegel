@@ -1,7 +1,13 @@
 <template>
   <div class="flex items-stretch bg-black text-white min-h-screen font-normal">
-    <div id="side-bar" class="w-1/2 flex-1">
-      <div id="weather" class="mb-6">
+    <div
+      id="side-bar"
+      class="w-1/2 flex-1"
+    >
+      <div
+        id="weather"
+        class="mb-6"
+      >
         <table>
           <thead>
             <tr>
@@ -18,7 +24,7 @@
             :key="'dayReport-' + index"
           >
             <th class="font-normal">
-              {{ WEEKDAYS[((today.getDay() + index) + WEEKDAYS.length - 1) % WEEKDAYS.length]}}
+              {{ WEEKDAYS[((today.getDay() + index) + WEEKDAYS.length - 1) % WEEKDAYS.length] }}
             </th>
             <th>
               <i
@@ -63,9 +69,15 @@
               />
             </th>
               
-            <th class="font-normal">{{ dayReport.tempMin }}°</th>
-            <th class="font-normal">/</th>
-            <th class="font-normal">{{ dayReport.tempMax }}°</th>
+            <th class="font-normal">
+              {{ dayReport.tempMin }}°
+            </th>
+            <th class="font-normal">
+              /
+            </th>
+            <th class="font-normal">
+              {{ dayReport.tempMax }}°
+            </th>
           </tr>
         </table>
       </div>
@@ -75,16 +87,16 @@
           <thead>
             <tr>
               <th
-              colspan="2"
-              class="text-left font-tiny border-b border-white"
+                colspan="2"
+                class="text-left font-tiny border-b border-white"
               >
                 CALENDAR
               </th>
             </tr>
           </thead>
           <tr
-          v-for="(event, index) in calendar"
-          :key="'event-' + index"
+            v-for="(event, index) in calendar"
+            :key="'event-' + index"
           >
             <th class="font-normal">
               {{ event.summary }}
@@ -97,12 +109,18 @@
       </div>
     </div>
 
-    <div id="clock" class="text-3xl flex flex-col top-0 right-0 mb-6 pr-2">
+    <div
+      id="clock"
+      class="text-3xl flex flex-col top-0 right-0 mb-6 pr-2"
+    >
       <p>{{ today.toDateString() }}</p>
       <p>{{ today.toLocaleTimeString() }}</p>
     </div>
 
-    <div id="news" class="w-full text-center absolute mb-16 px-12 bottom-0">
+    <div
+      id="news"
+      class="w-full text-center absolute mb-16 px-12 bottom-0"
+    >
       <agile
         v-if="news"
         :nav-buttons="false"
@@ -110,8 +128,9 @@
         :autoplay-speed="10000"
         :slides-to-show="1"
       >
-        <div id="newsItem"
+        <div
           v-for="(newsItem, index) in news"
+          id="newsItem"
           :key="'newsItem-' + index"
           class="slide text-2xl px-3"
         >
@@ -127,7 +146,10 @@
         </div>
       </agile>
     </div>
-    <div :hidden='true' class="w-full text-center absolute mb-16 px-12 top-0 text-sm text-gray-800">
+    <div
+      :hidden="true"
+      class="w-full text-center absolute mb-16 px-12 top-0 text-sm text-gray-800"
+    >
       SpectaculaireSpiegel v1.1
     </div>
   </div>
@@ -143,7 +165,10 @@ export default {
 		agile: VueAgile
   },
   props: {
-    msg: String,
+    msg: {
+      type: String,
+      default: ""
+    },
    
   },
   
@@ -229,14 +254,12 @@ export default {
         //return days + " Days "+ date_diff.getHours() + " Hours " + date_diff.getMinutes() + " Minutes " + date_diff.getSeconds() + " Seconds " +  date_diff.getMilliseconds() + " Miliseconds";
     },
     getnews(){
-      const baseUrl = `http://192.168.178.116:8000` //${window.location.hostname}
-      console.log(baseUrl+'/news')
+      const baseUrl = `${window.location.hostname}:8000` //${window.location.hostname}
 
       this.news = null
       axios.get(baseUrl+'/news',{
 
       }).then(response => {
-        console.log(response.data);
         this.news = response.data;
 
       }).catch()
@@ -244,7 +267,6 @@ export default {
       axios.get(baseUrl+'/weather',{
 
       }).then(response => {
-        console.log(response.data);
         this.weather = response.data;
       }).catch()
 
@@ -252,14 +274,12 @@ export default {
             axios.get(baseUrl+'/location',{
 
       }).then(response => {
-        console.log(response.data);
         this.location = response.data;
       }).catch()
 
             axios.get(baseUrl+'/calendar',{
 
       }).then(response => {
-        console.log(response.data);
         this.calendar = response.data;
       }).catch()
 
