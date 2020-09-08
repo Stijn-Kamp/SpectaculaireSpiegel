@@ -192,7 +192,8 @@ export default {
     
   }),
   created(){
-        this.getData()
+    console.log("Starting up...")
+    this.getData()
   },
   mounted() 
   {
@@ -251,20 +252,24 @@ export default {
     },
     getData(){
       const baseUrl = `${window.location.hostname}:8000` //${window.location.hostname}
+      const debug = true
 
       axios.get(baseUrl+'/news',{
 
       }).then(response => {
         this.news = response.data;
-
+        if(debug) console.log(this.news);
       }).catch(e => {
+        if(debug) console.log(e)
       });
 
       axios.get(baseUrl+'/weather',{
 
       }).then(response => {
         this.weather = response.data;
+        if(debug) console.log(this.weather);
       }).catch(e => {
+        if(debug) console.log(e)
       });
 
     
@@ -272,14 +277,18 @@ export default {
 
       }).then(response => {
         this.location = response.data;
+        if(debug) console.log(this.location);
       }).catch(e => {
+        if(debug) console.log(e)
       });
 
       axios.get(baseUrl+'/calendar',{
 
       }).then(response => {
         this.calendar = response.data;
+        if(debug) console.log(this.calendar);
       }).catch(e => {
+        if(debug) console.log(e)
       });
 
     }
