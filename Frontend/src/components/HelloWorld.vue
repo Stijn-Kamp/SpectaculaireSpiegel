@@ -158,11 +158,11 @@
 <script>
 const axios = require('axios').default;
 
-import { VueAgile } from 'vue-agile'
+import { VueAgile } from 'vue-agile';
 export default {
   name: 'SpectaculaireSpiegel',
   	components: {
-		agile: VueAgile
+		agile: VueAgile,
   },
   props: {
     msg: {
@@ -192,12 +192,12 @@ export default {
     
   }),
   created(){
-        this.getnews()
+        this.getData()
   },
   mounted() 
   {
     var tmrTime = setInterval(this.set_time, 1000)
-    var tmrUpdate = setInterval(this.getnews, 60000)
+    var tmrUpdate = setInterval(this.getData, 60000)
 
   },
 
@@ -246,47 +246,44 @@ export default {
         else{
         if(hours || time) time += hours + (hours != 1 ? " Hours " : " Hour ") 
         if(minutes || time) time += minutes + (minutes != 1 ? " Minutes " : " Minute ")
-        
-            //return time ? 'Starts in ' + time : ' Has started'
         }
         return time
-        //return time ? 'Starts in ' + time : ' Has started'
-        //return days + " Days "+ date_diff.getHours() + " Hours " + date_diff.getMinutes() + " Minutes " + date_diff.getSeconds() + " Seconds " +  date_diff.getMilliseconds() + " Miliseconds";
     },
-    getnews(){
+    getData(){
       const baseUrl = `${window.location.hostname}:8000` //${window.location.hostname}
 
-      this.news = null
       axios.get(baseUrl+'/news',{
 
       }).then(response => {
         this.news = response.data;
 
-      }).catch()
+      }).catch(e => {
+      });
 
       axios.get(baseUrl+'/weather',{
 
       }).then(response => {
         this.weather = response.data;
-      }).catch()
+      }).catch(e => {
+      });
 
     
-            axios.get(baseUrl+'/location',{
+      axios.get(baseUrl+'/location',{
 
       }).then(response => {
         this.location = response.data;
-      }).catch()
+      }).catch(e => {
+      });
 
-            axios.get(baseUrl+'/calendar',{
+      axios.get(baseUrl+'/calendar',{
 
       }).then(response => {
         this.calendar = response.data;
-      }).catch()
+      }).catch(e => {
+      });
 
     }
   }
 
 }
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
