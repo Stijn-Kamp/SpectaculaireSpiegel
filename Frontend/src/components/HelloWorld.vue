@@ -159,6 +159,13 @@
 const axios = require('axios').default;
 
 import { VueAgile } from 'vue-agile';
+
+function debug( message )
+{
+  const debug = true
+  if(debug) console.log(message)
+}
+
 export default {
   name: 'SpectaculaireSpiegel',
   	components: {
@@ -250,26 +257,26 @@ export default {
         }
         return time
     },
+
     getData(){
-      const baseUrl = `${window.location.hostname}:8000` //${window.location.hostname}
-      const debug = true
+      const baseUrl = `localhost:8000` //${window.location.hostname}
 
       axios.get(baseUrl+'/news',{
 
       }).then(response => {
         this.news = response.data;
-        if(debug) console.log(this.news);
+        debug(this.news);
       }).catch(e => {
-        if(debug) console.log(e)
+        debug(e)
       });
 
       axios.get(baseUrl+'/weather',{
 
       }).then(response => {
         this.weather = response.data;
-        if(debug) console.log(this.weather);
+        debug(this.weather);
       }).catch(e => {
-        if(debug) console.log(e)
+        debug(e)
       });
 
     
@@ -277,18 +284,18 @@ export default {
 
       }).then(response => {
         this.location = response.data;
-        if(debug) console.log(this.location);
+        debug(this.location);
       }).catch(e => {
-        if(debug) console.log(e)
+        debug(e)
       });
 
       axios.get(baseUrl+'/calendar',{
 
       }).then(response => {
         this.calendar = response.data;
-        if(debug) console.log(this.calendar);
+        debug(this.calendar);
       }).catch(e => {
-        if(debug) console.log(e)
+        debug(e)
       });
 
     }
