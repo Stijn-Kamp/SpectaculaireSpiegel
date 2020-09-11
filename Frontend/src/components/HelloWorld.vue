@@ -259,7 +259,10 @@ export default {
     },
 
     getData(){
-      const baseUrl = `localhost:8000` //${window.location.hostname}
+      const port = 8000
+      const baseUrl = `http://${window.location.hostname}:${port}`
+      
+      console.log(baseUrl+'/news')
 
       axios.get(baseUrl+'/news',{
 
