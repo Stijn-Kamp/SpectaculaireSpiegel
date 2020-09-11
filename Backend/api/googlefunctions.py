@@ -14,7 +14,6 @@ from google_auth_oauthlib.flow import InstalledAppFlow
 from googleapiclient.discovery import build
 from oauth2client import clientsecrets
 
-
 class GoogleClass:
     """This class is used to manage the connections to the Google cloud."""
     SCOPES = ['https://www.googleapis.com/auth/calendar.readonly']
@@ -56,12 +55,16 @@ class GoogleClass:
             if credentials and credentials.expired and credentials.refresh_token:
                 try:
                     credentials.refresh(Request())
-                except TransportError:
+                except Exception:
+                    print("Token not refreshed, google services will not be available.")
                     return None
             else:
-                flow = InstalledAppFlow.from_client_secrets_file(path.join(self.CREDENTIALS, 'credentials.json'),
-                                                                 self.SCOPES)
-                credentials = flow.run_local_server(port=0)
+                try:
+                    flow = InstalledAppFlow.from_client_secrets_file(path.join(self.CREDENTIALS, 'credentials.json'), self.SCOPES)
+                    credentials = flow.run_local_server(port=0)
+                except:
+                    print("Credentials not found, google services will not be available.")
+                    return None
             # Save the credentials for the next run
             with open(token, 'wb') as tk:
                 pickle.dump(credentials, tk)
@@ -116,6 +119,7 @@ class GoogleCalendar(GoogleClass):
         """
         return datetime.utcfromtimestamp(int(timeStamp)).isoformat() + 'Z'
 
+GoogleCalendar().checkCredentials()
 
 if __name__ == '__main__':
     calendars = GoogleCalendar().getCalendars()
