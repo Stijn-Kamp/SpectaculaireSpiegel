@@ -1,6 +1,6 @@
 *.pyc
 
-Backend/credentials
+Backend/credentials/*
 Backend/__pycache__
 Backend/configuration/config.ini
 
