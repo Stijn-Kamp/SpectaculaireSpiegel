@@ -260,7 +260,7 @@ export default {
 
     getData(){
       const port = 8000
-      const hostname = window.location.hostnam
+      const hostname = window.location.hostname
       const baseUrl = `http://${hostname}:${port}`
       
       console.log(baseUrl+'/news')
